@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+}
+
+.CabecalhoHome {
+    font-family: 'Averia Libre';
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 10px solid black;
+  }
+
+.logo {
+    width: 300px;
+}
+
+.linha-amarela {
+    height: 4.5px;
+    background-color: #D4AF37;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #D4AF37;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.MainSobre {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+.sobre1,
+.sobre2,
+.sobre3 {
+    text-decoration: none;
+    color: black;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    padding: 8px;
+}
+
+.imageSobre1{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageSobre {
+    width: 250px;
+    height: 150px;
+    margin: 26px;
+}
+
+footer{
+    margin-top: 40px;
+    font-family: 'Averia Libre';
+    background-color: black;
+    display: flex;
+    align-items: center;
+    border: 10px solid black;
+    height: 39px;
+}

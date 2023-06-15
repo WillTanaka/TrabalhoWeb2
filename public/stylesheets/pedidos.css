@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+}
+
+.CabecalhoHome {
+    font-family: 'Averia Libre';
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid black;
+  }
+
+.logo {
+    width: 300px;
+}
+
+.linha-amarela {
+    height: 4.5px;
+    background-color: #D4AF37;
+}
+
+footer{
+    margin-top: 168px;
+    font-family: 'Averia Libre';
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 10px solid black;
+    height: 39px;
+}
+
+.MainLogin {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 67px;
+    margin-bottom: 5px;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    padding: 0;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
