@@ -64,6 +64,13 @@ nav ul li a {
     margin-right: 20px;
 }
 
+.imageSobre2 {
+    width: 200px;
+    height: 100px;
+    display:flex;
+    margin-left: 20px;
+}
+
 footer{
     font-family: 'Averia Libre';
     background-color: black;
