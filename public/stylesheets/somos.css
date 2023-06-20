@@ -13,6 +13,8 @@
 
 .logo {
     width: 300px;
+    margin-bottom: 12px;
+
 }
 
 .linha-amarela {
@@ -53,7 +55,7 @@ nav ul li a {
 }
 
 .imageSobre1{
-    margin-top: 50px;
+    margin-top: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,11 +68,14 @@ nav ul li a {
 }
 
 footer{
-    margin-top: 50px;
+    margin-top: 40px;
     font-family: 'Averia Libre';
     background-color: black;
     display: flex;
     align-items: center;
     border: 10px solid black;
     height: 39px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

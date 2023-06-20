@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetroNaka</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/contato.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/contato.css" />
 </head>
 <body>
     <header class="CabecalhoHome">
         <div class="Logo">
-            <img class="logo" src="/images/PetroNaka1.png" alt="...">
+            <img class="logo" src="../images/PetroNaka1.png" alt="...">
         </div>
         <nav>
             <ul>
-                <li><a href="sobre">Sobre PetroNaka</a></li>
-                <li><a href="negocio">Tecnologias</a></li>
-                <li><a href="somos">Quem somos</a></li>
-                <li><a href="cliente">Área do Cliente</a></li>
-                <li><a href="contato">Contato</a></li>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/sobre">Sobre PetroNaka</a></li>
+                <li><a href="/negocio">Tecnologias</a></li>
+                <li><a href="/somos">Equipe</a></li>
+                <li><a href="/contato">Contato</a></li>
             </ul>
         </nav>
     </header>
@@ -26,7 +26,7 @@
 
     <main class="MainContato">
             <h1>Entre em Contato</h1>
-            <form id="formmulario-contato" action="enviar_email.php" method="POST">
+            <form action="/email" method="POST" id="formmulario-contato" >
                 <div class="formmulario">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" required>

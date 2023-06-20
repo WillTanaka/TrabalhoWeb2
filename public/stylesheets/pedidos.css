@@ -6,13 +6,37 @@
     font-family: 'Averia Libre';
     background-color: black;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border: 10px solid black;
-  }
+    padding-bottom: 20px;
+}
 
 .logo {
     width: 300px;
+    margin-bottom: 20px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #D4AF37;
+    padding: 10px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .linha-amarela {
@@ -20,8 +44,21 @@
     background-color: #D4AF37;
 }
 
+nav ul {
+    display: flex;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #D4AF37;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+
 footer{
-    margin-top: 168px;
+    margin-top: 105px;
     font-family: 'Averia Libre';
     background-color: black;
     display: flex;
@@ -29,31 +66,131 @@ footer{
     align-items: center;
     border: 10px solid black;
     height: 39px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+input{
+    display: flex;
+    margin: 10px;
+    width: 330px;
+    height: 20px;
+    font-family: 'Arial', sans-serif; 
 }
 
 .MainLogin {
-    max-width: 600px;
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Arial', sans-serif; 
+  }
+  
+  #lista-pedidos {
     margin: 0 auto;
-    margin-top: 67px;
-    margin-bottom: 5px;
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    padding: 0;
-}
-
-section {
+    max-width: 1400px;
+  }
+  
+  h2 {
+    display: flex;
+    font-size: 24px;
     margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse; 
+  }
+  
+  th {
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #CCCCCC;
+  }
+
+ td {
+    padding: 10px;
+    text-align: left;
+    text-align: center;
+    border: 1px solid #CCCCCC;
+  }
+  
+  thead {
+    background-color: #FFDB58;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #FFFFCC;
+  }
+  
+  tbody tr:hover {
+    background-color: #eaeaea;
+  }
+  
+  tfoot {
+    font-weight: bold;
+  }
+
+  button[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 35px;
+    background-color: #D4AF37;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 50px;
 }
 
-h2 {
-    margin-top: 0;
+button {
+  display: block;
+  margin: 0 auto;
+  background-color: #D4AF37;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+.btn-extrair-pdf {
+  display: block;
+  margin: 0 auto;
+  background-color: #1d4ed5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
 }
 
-li {
-    margin-bottom: 10px;
+.btn-excluir {
+  display: block;
+  margin: 0 auto;
+  background-color: #e70000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.btn-editar {
+  display: block;
+  margin: 0 auto;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
 }

@@ -13,6 +13,8 @@
 
 .logo {
     width: 300px;
+    margin-bottom: 12px;
+
 }
 
 .linha-amarela {
@@ -51,13 +53,13 @@ nav ul li a {
     padding: 20px;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 17px;
     text-align: center;
 }
 
 .imageSobre {
-    width: 273px;
-    height: 273px;
+    width: 230px;
+    height: 230px;
     display:flex;
     margin: auto;
 }
@@ -70,4 +72,7 @@ footer{
     align-items: center;
     border: 10px solid black;
     height: 39px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

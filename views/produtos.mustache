@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetroNaka</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/produtos.css" />
+</head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+<script src="../javascripts/produtosFunctions.js"></script>
+
+<body>
+    <header class="CabecalhoHome">
+        <div class="Logo">
+            <img class="logo" src="../images/PetroNaka1.png" alt="...">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/pedidos">Pedidos</a></li>
+                <li><a class="logout-a" href="/logout">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="linha-amarela"></div>
+
+    <main class="MainLogin">
+        <section id="lista-produtos">
+            <h2>Lista de Produtos</h2>
+            <input type="text" id="buscar" placeholder="Buscar por nome do produto">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código produto</th>
+                        <th>Nome do produto</th>
+                        <th>Unidade de medida</th>
+                    </tr>
+                </thead>
+                 <tbody id="tabela-produtos">
+                    {{#produtos}}
+                    <tr class="produto">
+                        <td>{{_id}}</td>
+                        <td class="nome">{{nome}}</td>
+                        <td class="medida">{{medida}}</td>
+                        <td><button class="btn-editar" onclick="editarProduto('{{_id}}')">editar</button></td>
+                        <td><button class="btn-excluir" onclick="excluirProduto('{{_id}}')">excluir</button></td>
+                    </tr>
+                    {{/produtos}}
+                </tbody>
+            </table>
+            <button style="margin-top: 20px" id="btn-extrair-pdf" class="btn-extrair-pdf" onclick="exportToPdf()">Extrair PDF</button>
+
+        </section>
+
+         <form action="/produtos/novoProduto" method="GET">
+            <button type="submit">Novo produto</button>
+        </form>
+
+    </main>
+
+    <footer>
+        <div></div>
+    </footer>
+</body>
+
+</html>

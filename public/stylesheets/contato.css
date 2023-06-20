@@ -13,6 +13,7 @@
 
 .logo {
     width: 300px;
+    margin-bottom: 12px;
 }
 
 .linha-amarela {
@@ -41,12 +42,15 @@ footer{
     align-items: center;
     border: 10px solid black;
     height: 39px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .MainContato {
     max-width: 600px;
     margin: 0 auto;
-    margin-top: 67px;
+    margin-top: 20px;
     margin-bottom: 5px;
     font-family: Arial, sans-serif;
     padding: 20px;
@@ -54,8 +58,8 @@ footer{
 
 h1 {
     text-align: center;
-    font-size:25px;
-    margin-bottom: 32px;
+    font-size:22px;
+    margin-bottom: 35px;
 }
 
 .formmulario {

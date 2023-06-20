@@ -13,6 +13,8 @@
 
 .logo {
     width: 300px;
+    margin-bottom: 12px;
+
 }
 
 .linha-amarela {
@@ -30,7 +32,7 @@ nav ul li a {
     padding: 20px;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .MainSobre {
@@ -49,7 +51,7 @@ nav ul li a {
     color: black;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 17px;
     text-align: center;
     align-items: center;
     display: flex;
@@ -58,17 +60,10 @@ nav ul li a {
 }
 
 .imageSobre {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     display:flex;
     margin-right: 20px;
-}
-
-.imageSobre2 {
-    width: 200px;
-    height: 100px;
-    display:flex;
-    margin-left: 20px;
 }
 
 footer{
@@ -79,4 +74,7 @@ footer{
     align-items: center;
     border: 10px solid black;
     height: 39px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

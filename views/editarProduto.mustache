@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetroNaka</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/novoProduto.css" />
+</head>
+
+<body>
+    <header class="CabecalhoHome">
+        <div class="Logo">
+            <img class="logo" src="../../images/PetroNaka1.png" alt="...">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/pedidos">Pedidos</a></li>
+                <li><a href="/produtos">Produtos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="linha-amarela"></div>
+
+    <main class="MainLogin">
+        <div class="container">
+            <h2>Edição de Produto</h2>
+            <form action="/produtos/editarProduto" method="post">
+                {{#produtos}}
+                <div class="form-group">
+                    <label for="usina">ID:</label>
+                    <input type="text" id="id" name="id" value="{{_id}}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="produto">Nome do Produto:</label>
+                    <input type="text" id="nome" name="nome" value="{{nome}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="produto">Unidade de medida:</label>
+                    <input type="text" id="medida" name="medida" value="{{medida}}" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Editar</button>
+                </div>
+                {{/produtos}}
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div></div>
+    </footer>
+</body>
+
+</html>
