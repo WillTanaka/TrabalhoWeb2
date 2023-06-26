@@ -7,7 +7,7 @@ class PedidoModel {
 
     async createPedido(pedido) {
         try {
-            pedido.timestamp = new Date(); // Adiciona o timestamp atual
+            pedido.timestamp = new Date();
             const result = await this.collection.insertOne(pedido);
             console.log('Pedido criado:', result.insertedId);
         } catch (error) {

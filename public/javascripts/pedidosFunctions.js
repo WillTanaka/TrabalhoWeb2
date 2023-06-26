@@ -8,8 +8,7 @@ function excluirPedido(id) {
       .catch((error) => {
         console.error(error);
       });
-  }
-  
+  } 
   function editarPedido(id) {
     console.log(id);
     window.location.href = `/pedidos/editarPedido/${id}`;

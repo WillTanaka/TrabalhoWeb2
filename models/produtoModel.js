@@ -7,7 +7,7 @@ class ProdutoModel {
 
     async createProduto(produto) {
         try {
-            produto.timestamp = new Date(); // Adiciona o timestamp atual
+            produto.timestamp = new Date();
             const result = await this.collection.insertOne(produto);
             console.log('Produto criado:', result.insertedId);
         } catch (error) {

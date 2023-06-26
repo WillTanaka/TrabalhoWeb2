@@ -6,7 +6,7 @@ class ClienteDAO {
 
     async createCliente(cliente) {
         try {
-            cliente.timestamp = new Date(); // Adiciona o timestamp atual
+            cliente.timestamp = new Date(); 
             const result = await this.collection.insertOne(cliente);
             console.log('Cliente criado:', result.insertedId);
         } catch (error) {
