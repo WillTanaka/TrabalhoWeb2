@@ -1,5 +1,5 @@
-*{
-    margin: 0;
+* {
+  margin: 0;
 }
 
 .CabecalhoHome {
@@ -58,8 +58,8 @@ nav ul li a {
 }
 
 .linha-amarela {
-    height: 4.5px;
-    background-color: #D4AF37;
+  height: 4.5px;
+  background-color: #D4AF37;
 }
 
 .btn-extrair-pdf {
@@ -98,25 +98,25 @@ nav ul li a {
   font-size: 15px;
 }
 
-footer{
-    margin-top: 222px;
-    font-family: 'Averia Libre';
-    background-color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 10px solid black;
-    height: 39px;
-    bottom: 0;
-    width: 100%;
+footer {
+  margin-top: 222px;
+  font-family: 'Averia Libre';
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 10px solid black;
+  height: 39px;
+  bottom: 0;
+  width: 100%;
 }
 
-input{
-    display: flex;
-    margin: 10px;
-    width: 330px;
-    height: 20px;
-    font-family: 'Arial', sans-serif; 
+input {
+  display: flex;
+  margin: 10px;
+  width: 330px;
+  height: 20px;
+  font-family: 'Arial', sans-serif;
 }
 
 .MainLogin {
@@ -127,64 +127,64 @@ input{
   font-family: 'Arial', sans-serif;
 }
 
-  #lista-pedidos {
-    margin: 0 auto;
-    max-width: 900px;
-  }
-  
-  h2 {
-    display: flex;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse; 
-  }
-  
-  th {
-    padding: 10px;
-    text-align: left;
-    font-weight: bold;
-    text-align: center;
-    font-weight: bold;
-    border: 1px solid #CCCCCC;
-  }
+#lista-pedidos {
+  margin: 0 auto;
+  max-width: 900px;
+}
 
- td {
-    padding: 10px;
-    text-align: left;
-    text-align: center;
-    border: 1px solid #CCCCCC;
-  }
-  
-  thead {
-    background-color: #FFDB58;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #FFFFCC;
-  }
-  
-  tbody tr:hover {
-    background-color: #eaeaea;
-  }
-  
-  tfoot {
-    font-weight: bold;
-  }
-  
-  button[type="submit"] {
-    display: block;
-    margin: 0 auto;
-    padding: 10px 35px;
-    background-color: #D4AF37;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    margin-top: 50px;
+h2 {
+  display: flex;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #CCCCCC;
+}
+
+td {
+  padding: 10px;
+  text-align: left;
+  text-align: center;
+  border: 1px solid #CCCCCC;
+}
+
+thead {
+  background-color: #FFDB58;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #FFFFCC;
+}
+
+tbody tr:hover {
+  background-color: #eaeaea;
+}
+
+tfoot {
+  font-weight: bold;
+}
+
+button[type="submit"] {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 35px;
+  background-color: #D4AF37;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 50px;
 }

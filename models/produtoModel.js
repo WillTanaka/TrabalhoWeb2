@@ -18,15 +18,15 @@ class ProdutoModel {
     async readProdutos() {
         try {
             const produtos = await this.collection.find().toArray();
-            return(produtos)
+            return (produtos)
         } catch (error) {
             console.error('Erro ao ler os produtos:', error);
         }
     }
 
-   async updateProduto(produtoId, novoProduto) {
+    async updateProduto(produtoId, novoProduto) {
         try {
-            
+
             const query = { _id: new ObjectId(produtoId) };
             const update = { $set: novoProduto };
             const result = await this.collection.updateOne(query, update);
@@ -47,7 +47,7 @@ class ProdutoModel {
 
     async findOne(query) {
         try {
-            const result = await this.collection.findOne({_id : query});
+            const result = await this.collection.findOne({ _id: query });
             return (result);
         } catch (error) {
             console.error('Erro ao buscar', error);
@@ -56,7 +56,7 @@ class ProdutoModel {
 
     async findOnenome(query) {
         try {
-            const result = await this.collection.findOne({nome : query});
+            const result = await this.collection.findOne({ nome: query });
             return (result);
         } catch (error) {
             console.error('Erro ao buscar', error);

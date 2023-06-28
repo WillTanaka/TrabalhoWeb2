@@ -11,7 +11,7 @@
 <body>
     <header class="CabecalhoHome">
         <div class="Logo">
-            <a href="/"><img class="logo" src="../images/PetroNaka1.png" alt="..."></a>
+            <a href="/home"><img class="logo" src="../images/PetroNaka1.png" alt="..."></a>
         </div>
     </header>
 
@@ -21,7 +21,7 @@
         <div class="container">
             <h2>Editar Usuário</h2>
             <form action="/clientes/editarCliente" method="POST">
-            {{#cliente}}
+                {{#cliente}}
                 <div class="form-group">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" value="{{nome}}" required>
@@ -44,7 +44,8 @@
                 {{/cliente}}
             </form>
             {{#cliente}}
-            <button type="button" id="excluir-usuario" onclick="excluirCliente()">Excluir Usuário</button>
+            <button class="button-excluir" type="button" id="excluir-usuario" onclick="excluirCliente()">Excluir
+                usuário</button>
             {{/cliente}}
         </div>
     </main>

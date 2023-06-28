@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
 }
 
@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     border: 10px solid black;
-  }
+}
 
 .logo {
     width: 300px;
@@ -22,7 +22,7 @@
     background-color: #D4AF37;
 }
 
-footer{
+footer {
     font-family: 'Averia Libre';
     background-color: black;
     display: flex;

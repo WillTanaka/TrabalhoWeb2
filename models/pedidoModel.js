@@ -17,13 +17,13 @@ class PedidoModel {
 
     async readPedidos(clienteId) {
         try {
-          const pedidos = await this.collection.find({ clienteId }).toArray();
-          return pedidos;
+            const pedidos = await this.collection.find({ clienteId }).toArray();
+            return pedidos;
         } catch (error) {
-          console.error('Erro ao ler os pedidos:', error);
+            console.error('Erro ao ler os pedidos:', error);
         }
-      }
-      
+    }
+
 
     async updatePedido(pedidoId, novoPedido) {
         try {
@@ -40,15 +40,15 @@ class PedidoModel {
 
     async updatePedidoProduto(nome, novoprod) {
         try {
-          const query = { produto: nome };
-          const update = { $set: { produto: novoprod } };
-          const result = await this.collection.updateMany(query, update);
-          console.log('Pedidos atualizados:', result.modifiedCount);
+            const query = { produto: nome };
+            const update = { $set: { produto: novoprod } };
+            const result = await this.collection.updateMany(query, update);
+            console.log('Pedidos atualizados:', result.modifiedCount);
         } catch (error) {
-          console.error('Erro ao atualizar os pedidos:', error);
-          throw error;
+            console.error('Erro ao atualizar os pedidos:', error);
+            throw error;
         }
-      }
+    }
 
     async deletePedido(pedidoId) {
         try {

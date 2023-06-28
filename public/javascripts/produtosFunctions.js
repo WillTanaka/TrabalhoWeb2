@@ -10,62 +10,52 @@ function excluirProduto(id, nome) {
 }
 
 function editarProduto(id) {
-  console.log(id);
-  window.location.href = `/produtos/editarProduto/${id}`;
+    console.log(id);
+    window.location.href = `/produtos/editarProduto/${id}`;
 }
 
+function exportToPdf() {
+    const tabelaProdutos = document.getElementById("myTable");
+    const rows = tabelaProdutos.getElementsByTagName("tr");
 
-function exportToPdf(){
-        const tabelaProdutos = document.getElementById("myTable");
-        const rows = tabelaProdutos.getElementsByTagName("tr");
+    const doc = new window.jspdf.jsPDF();
 
-        // Cria um novo documento PDF
-        const doc = new window.jspdf.jsPDF();
+    let y = 20;
 
-        // Define a posição inicial do conteúdo no PDF
-        let y = 20;
+    const tableData = [];
 
-        // Cria um array para armazenar os dados das células
-        const tableData = [];
+    for (const row of rows) {
+        const cells = row.getElementsByTagName("td");
+        let includeCell = true;
+        const rowData = [];
 
-        // Itera sobre cada linha da tabela
-        for (const row of rows) {
-            const cells = row.getElementsByTagName("td");
-            let includeCell = true;
-            const rowData = [];
-
-            for (let i = 0; i < cells.length - 1; i++) {
-                const cell = cells[i];
-                const cellText = cell.textContent.trim();
-                rowData.push(cellText);
-            }
-
-            if (includeCell) {
-                tableData.push(rowData);
-            }
+        for (let i = 0; i < cells.length - 1; i++) {
+            const cell = cells[i];
+            const cellText = cell.textContent.trim();
+            rowData.push(cellText);
         }
 
-        // Define a largura das colunas
-        const columnWidths = [60, 60, 60];
+        if (includeCell) {
+            tableData.push(rowData);
+        }
+    }
 
-        // Gera a tabela no PDF
-        doc.autoTable({
-            startY: y,
-            head: [["Número Produto", "Nome do Produto", "Unidade de Medida"]],
-            body: tableData,
-            columnStyles: {
-                0: { cellWidth: columnWidths[0] },
-                1: { cellWidth: columnWidths[1] },
-                2: { cellWidth: columnWidths[2] }
-            },
-            didDrawPage: function (data) {
-                // Adiciona a largura da tabela ao PDF
-                doc.setPage(data.pageCount);
-                y = data.cursor.y + 10;
-            }
-        });
+    const columnWidths = [60, 60, 60];
 
-        // Salva o PDF e faz o download
-        doc.save("produtos.pdf");
+    doc.autoTable({
+        startY: y,
+        head: [["Número Produto", "Nome do Produto", "Unidade de Medida"]],
+        body: tableData,
+        columnStyles: {
+            0: { cellWidth: columnWidths[0] },
+            1: { cellWidth: columnWidths[1] },
+            2: { cellWidth: columnWidths[2] }
+        },
+        didDrawPage: function (data) {
+            doc.setPage(data.pageCount);
+            y = data.cursor.y + 10;
+        }
+    });
+
+    doc.save("produtos.pdf");
 }
-  

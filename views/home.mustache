@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetroNaka</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/home.css" />
 </head>
+
 <body>
     <header class="CabecalhoHome">
         <div class="Logo">
@@ -32,13 +34,14 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          const perfilLi = document.getElementById("perfil");
-          perfilLi.addEventListener("click", (event) => {
-              event.preventDefault();
-              window.location.href = "/clientes/editarCliente";
-          });
+        document.addEventListener("DOMContentLoaded", function () {
+            const perfilLi = document.getElementById("perfil");
+            perfilLi.addEventListener("click", (event) => {
+                event.preventDefault();
+                window.location.href = "/clientes/editarCliente";
+            });
         });
     </script>
 </body>
+
 </html>

@@ -11,7 +11,7 @@ class DBConnection {
   async connect() {
     try {
       await this.client.connect();
-      this.database = this.client.db(""+ process.env.DATABASE_NAME);
+      this.database = this.client.db("" + process.env.DATABASE_NAME);
     } catch (error) {
       console.error("Erro ao conectar ao MongoDB:", error);
     }

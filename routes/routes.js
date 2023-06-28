@@ -18,32 +18,32 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL,
     pass: process.env.PASSWORD
   },
-  tls:{
+  tls: {
     rejectUnauthorized: false
   }
 });
 
 
-router.post('/email', (req, res) => {   
-    
-    const { email, nome, assunto, mensagem } = req.body;
-    
-    const options = {
-        from: email, 
-        to: process.env.EMAIL, 
-        subject: assunto,
-        text: `Nome: ${nome}\nEmail: ${email}\n\n${mensagem}`,
-    };
+router.post('/email', (req, res) => {
 
-    transporter.sendMail(options, (error, info) => {
-      if (error) {
-        console.log(error);
-        res.status(500).send('Erro ao enviar o e-mail.');
-      } else {
-        console.log('E-mail enviado: ' + info.response);
-        res.send('E-mail enviado com sucesso!');
-      }
-    });
+  const { email, nome, assunto, mensagem } = req.body;
+
+  const options = {
+    from: email,
+    to: process.env.EMAIL,
+    subject: assunto,
+    text: `Nome: ${nome}\nEmail: ${email}\n\n${mensagem}`,
+  };
+
+  transporter.sendMail(options, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send('Erro ao enviar o e-mail.');
+    } else {
+      console.log('E-mail enviado: ' + info.response);
+      res.send('E-mail enviado com sucesso!');
+    }
+  });
 });
 
 //
@@ -72,7 +72,7 @@ router.get('/contato', (req, res) => {
   res.render('contato');
 });
 
-router.get('/pedidos', auth, async(req, res) => {
+router.get('/pedidos', auth, async (req, res) => {
   const clienteId = req.user.clienteId;
   await pedido.readPedidos(clienteId)
     .then((pedidos) => {
@@ -83,7 +83,7 @@ router.get('/pedidos', auth, async(req, res) => {
     });
 });
 
-router.get('/produtos', auth,  async(req, res) => {
+router.get('/produtos', auth, async (req, res) => {
   await produto.readProdutos()
     .then((produtos) => {
       res.render('produtos', { produtos });
@@ -93,11 +93,11 @@ router.get('/produtos', auth,  async(req, res) => {
     });
 });
 
-router.get('/home', auth, async(req, res) => {
+router.get('/home', auth, async (req, res) => {
   res.render('home')
 });
 
-router.get('/logout', auth, async(req, res) => {
+router.get('/logout', auth, async (req, res) => {
   res.clearCookie('token');
   res.redirect('/');
 });
@@ -160,7 +160,7 @@ router.get('/automatico', auth, async (req, res) => {
   for (const prod of produtos) {
     await produto.createProduto(prod)
   }
-  for(const pedi of listaObjetos){
+  for (const pedi of listaObjetos) {
     await pedido.createPedido(pedi)
   }
   res.redirect('/home')

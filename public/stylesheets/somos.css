@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
 }
 
@@ -9,7 +9,7 @@
     justify-content: space-between;
     align-items: center;
     border: 10px solid black;
-  }
+}
 
 .logo {
     width: 300px;
@@ -40,7 +40,7 @@ nav ul li a {
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 10px;
-  }
+}
 
 .sobre1,
 .sobre2,
@@ -54,7 +54,7 @@ nav ul li a {
     padding: 8px;
 }
 
-.imageSobre1{
+.imageSobre1 {
     margin-top: 25px;
     display: flex;
     justify-content: center;
@@ -67,7 +67,7 @@ nav ul li a {
     margin: 26px;
 }
 
-footer{
+footer {
     margin-top: 40px;
     font-family: 'Averia Libre';
     background-color: black;

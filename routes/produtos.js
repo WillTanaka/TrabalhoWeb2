@@ -9,31 +9,30 @@ const pedidoController = new PedidoController();
 const auth = require('../middleware/auth')
 router.use(auth);
 
-
 router.get('/novoProduto', (req, res) => {
   res.render('novoProduto');
 });
 
-router.get('/editarProduto/:id', async(req, res) => {
+router.get('/editarProduto/:id', async (req, res) => {
   const produtoId = req.params.id;
   const teste = new ObjectId(produtoId);
   await produtoController.findOne(teste)
     .then((produtos) => {
       console.log(produtos);
-      res.render('editarProduto', {produtos });
+      res.render('editarProduto', { produtos });
     })
     .catch((error) => {
-      res.status(500).json({ error: 'Ocorreu um erro ao buscar o produto.' +error});
+      res.status(500).json({ error: 'Ocorreu um erro ao buscar o produto.' + error });
     });
 });
 
-router.post('/editarProduto', async(req, res) => {
+router.post('/editarProduto', async (req, res) => {
   const { id, nome, medida, antnome } = req.body;
   console.log(id)
   const novoProduto = {
     nome,
     medida,
-    timestamp: new Date().getTime(), // Adicionar o timestamp
+    timestamp: new Date().getTime(),
   };
 
   await produtoController.updateProduto(id, novoProduto)
@@ -46,7 +45,7 @@ router.post('/editarProduto', async(req, res) => {
     });
 });
 
-router.delete('/:id/:nome',async (req, res) => {
+router.delete('/:id/:nome', async (req, res) => {
   const produtoId = req.params.id;
   const nome = req.params.nome;
   const teste = new ObjectId(produtoId);
@@ -61,13 +60,13 @@ router.delete('/:id/:nome',async (req, res) => {
     });
 });
 
-router.post('/',async (req, res) => {
+router.post('/', async (req, res) => {
   const { nome, medida } = req.body;
 
   const novoProduto = {
     nome,
     medida,
-    timestamp: new Date().getTime(), // Adicionar o timestamp
+    timestamp: new Date().getTime(),
   };
 
   await produtoController.createProduto(novoProduto)
@@ -84,6 +83,5 @@ router.post('/',async (req, res) => {
       res.status(500).json({ error: 'Ocorreu um erro ao cadastrar o produto.' });
     });
 });
-
 
 module.exports = router;

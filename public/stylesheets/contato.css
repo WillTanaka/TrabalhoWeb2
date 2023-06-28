@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
 }
 
@@ -9,7 +9,7 @@
     justify-content: space-between;
     align-items: center;
     border: 10px solid black;
-  }
+}
 
 .logo {
     width: 300px;
@@ -34,7 +34,7 @@ nav ul li a {
     font-size: 18px;
 }
 
-footer{
+footer {
     font-family: 'Averia Libre';
     background-color: black;
     display: flex;
@@ -58,7 +58,7 @@ footer{
 
 h1 {
     text-align: center;
-    font-size:22px;
+    font-size: 22px;
     margin-bottom: 35px;
 }
 

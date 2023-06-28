@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetroNaka</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/login.css" />
 </head>
+
 <body>
     <header class="CabecalhoHome">
         <div class="Logo">
@@ -28,24 +30,24 @@
         <section id="login">
             <h2>Login</h2>
             {{! <form action="/pedidos/" method="GET"> }}
-             <form action="/clientes/loginCliente" method="POST">
-                <div class="campo-formulario">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" >
-                </div>
-                <div class="campo-formulario">
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" >
-                </div>
-                <button type="submit">Entrar</button>
-            </form>
-            <a class ="criarConta" href="/novaConta">Criar conta</a>
+                <form action="/clientes/loginCliente" method="POST">
+                    <div class="campo-formulario">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div class="campo-formulario">
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha">
+                    </div>
+                    <button type="submit">Entrar</button>
+                </form>
+                <a class="criarConta" href="/novaConta">Criar conta</a>
         </section>
     </main>
 
-    
     <footer>
         <div></div>
     </footer>
 </body>
+
 </html>

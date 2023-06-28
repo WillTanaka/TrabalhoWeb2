@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
 }
 
@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     border: 10px solid black;
-  }
+}
 
 .logo {
     width: 300px;
@@ -22,7 +22,7 @@
     background-color: #D4AF37;
 }
 
-footer{
+footer {
     font-family: 'Averia Libre';
     background-color: black;
     display: flex;
@@ -43,16 +43,18 @@ footer{
 }
 
 h2 {
-    margin-top: 20px;
+    margin-top: 6px;
     text-align: center;
     margin-bottom: 50px;
 }
-.MainLogin{
+
+.MainLogin {
     overflow-y: auto;
     height: 526px;
 }
+
 .form-group {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 }
 
 label {
@@ -72,7 +74,7 @@ input[type="password"] {
 button[type="submit"] {
     display: block;
     margin: 0 auto;
-    padding: 10px 35px;
+    padding: 8px 33px;
     background-color: #00ba03;
     color: white;
     border: none;
@@ -82,5 +84,15 @@ button[type="submit"] {
     font-size: 15px;
 }
 
-
-
+.button-excluir {
+    display: block;
+    margin: 0 auto;
+    padding: 6px 31px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+}

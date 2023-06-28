@@ -23,7 +23,7 @@ router.get('/novoPedido', async (req, res) => {
 
 });
 
-router.get('/editarPedido/:id',  async(req, res) => {
+router.get('/editarPedido/:id', async (req, res) => {
   const pedidoId = req.params.id;
   const teste = new ObjectId(pedidoId);
   await pedidoController.findOne(teste)
@@ -36,7 +36,7 @@ router.get('/editarPedido/:id',  async(req, res) => {
               res.render('editarPedido', { pedidos: pedidos, produto: produto, produtos: produtos });
             })
             .catch((error) => {
-              res.status(500).json({ error: 'Ocorreu um erro ao buscar o produtoaaa.' +error});
+              res.status(500).json({ error: 'Ocorreu um erro ao buscar o produtoaaa.' + error });
             });
         })
         .catch((error) => {
@@ -48,7 +48,7 @@ router.get('/editarPedido/:id',  async(req, res) => {
     });
 });
 
-router.post('/editarPedido', async(req, res) => {
+router.post('/editarPedido', async (req, res) => {
   const clienteId = req.user.clienteId;
 
   const { id, usina, produto, quantidade, preco, destino } = req.body;
@@ -59,7 +59,7 @@ router.post('/editarPedido', async(req, res) => {
     preco,
     destino,
     clienteId,
-    timestamp: new Date().getTime(), // Adicionar o timestamp
+    timestamp: new Date().getTime(),
   };
 
   await pedidoController.updatePedido(id, novoPedido)
@@ -71,7 +71,7 @@ router.post('/editarPedido', async(req, res) => {
     });
 });
 
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', async (req, res) => {
   const pedidoId = req.params.id;
   const teste = new ObjectId(pedidoId);
 
@@ -84,7 +84,7 @@ router.delete('/:id', async(req, res) => {
     });
 });
 
-router.post('/',async (req, res) => {
+router.post('/', async (req, res) => {
   const clienteId = req.user.clienteId;
   const { usina, produto, quantidade, preco, destino } = req.body;
   const novoPedido = {
@@ -94,7 +94,7 @@ router.post('/',async (req, res) => {
     preco,
     destino,
     clienteId,
-    timestamp: new Date().getTime(), // Adicionar o timestamp
+    timestamp: new Date().getTime(),
   };
 
   await pedidoController.createPedido(novoPedido)

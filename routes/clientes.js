@@ -50,7 +50,7 @@ router.post('/loginCliente', async (req, res) => {
 
 router.get('/editarCliente', auth, async (req, res) => {
   try {
-    const clienteId = req.user.clienteId; // Obtenha o clienteId do token (você precisa adicionar a autenticação do token)
+    const clienteId = req.user.clienteId;
     console.log(clienteId)
     const cliente = await clienteController.findOne({ _id: new ObjectId(clienteId) });
 
@@ -67,7 +67,7 @@ router.get('/editarCliente', auth, async (req, res) => {
 
 router.post('/editarCliente', auth, async (req, res) => {
   try {
-    const clienteId = req.user.clienteId; // Obtenha o clienteId do token (você precisa adicionar a autenticação do token)
+    const clienteId = req.user.clienteId;
     const { nome, email, senha } = req.body;
 
     const filter = { _id: new ObjectId(clienteId) };
@@ -83,7 +83,7 @@ router.post('/editarCliente', auth, async (req, res) => {
 
 router.delete('/excluirCliente', auth, async (req, res) => {
   try {
-    const clienteId = req.user.clienteId; // Obtenha o clienteId do token (você precisa adicionar a autenticação do token)
+    const clienteId = req.user.clienteId;
     const filter = { _id: new ObjectId(clienteId) };
 
     await clienteController.deleteCliente(filter);
