@@ -1,7 +1,6 @@
 
-function excluirProduto(id) {
-    console.log(id);
-    fetch(`/produtos/${id}`, { method: "DELETE" })
+function excluirProduto(id, nome) {
+    fetch(`/produtos/${id}/${nome}`, { method: "DELETE" })
         .then(() => {
             location.href = location.href;
         })
@@ -15,28 +14,9 @@ function editarProduto(id) {
   window.location.href = `/produtos/editarProduto/${id}`;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const buscarInput = document.getElementById("buscar");
-    const tabelaProdutos = document.getElementById("tabela-produtos");
-    const rows = tabelaProdutos.getElementsByTagName("tr");
-  
-    buscarInput.addEventListener("input", function() {
-      const searchString = this.value.toLowerCase();
-  
-      for (const row of rows) {
-        const nome = row.querySelector(".nome").textContent.toLowerCase();
-  
-        if (nome.includes(searchString)) {
-          row.style.display = "";
-        } else {
-          row.style.display = "none";
-        }
-      }
-    });
-  });
 
 function exportToPdf(){
-        const tabelaProdutos = document.getElementById("tabela-produtos");
+        const tabelaProdutos = document.getElementById("myTable");
         const rows = tabelaProdutos.getElementsByTagName("tr");
 
         // Cria um novo documento PDF

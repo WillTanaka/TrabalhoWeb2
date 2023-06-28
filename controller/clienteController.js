@@ -21,7 +21,7 @@ class ClienteController {
     try {
       await this.connection.connect();
       this.model = new ClienteModel(this.connection);
-      return(await this.model.readClientes());
+      return await this.model.readClientes();
     } finally {
       this.connection.close();
     }

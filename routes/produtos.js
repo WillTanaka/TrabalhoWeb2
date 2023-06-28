@@ -4,32 +4,31 @@ const router = express.Router();
 const { ObjectId } = require('mongodb');
 const ProdutoController = require('../controller/produtoController');
 const produtoController = new ProdutoController();
-
+const PedidoController = require('../controller/pedidoController');
+const pedidoController = new PedidoController();
 const auth = require('../middleware/auth')
 router.use(auth);
-router.get('/', (req, res) => {
 
-});
 
 router.get('/novoProduto', (req, res) => {
   res.render('novoProduto');
 });
 
-router.get('/editarProduto/:id', (req, res) => {
+router.get('/editarProduto/:id', async(req, res) => {
   const produtoId = req.params.id;
   const teste = new ObjectId(produtoId);
-  produtoController.findOne(teste)
+  await produtoController.findOne(teste)
     .then((produtos) => {
       console.log(produtos);
-      res.render('editarProduto', { produtos });
+      res.render('editarProduto', {produtos });
     })
     .catch((error) => {
-      res.status(500).json({ error: 'Ocorreu um erro ao buscar o produto.' });
+      res.status(500).json({ error: 'Ocorreu um erro ao buscar o produto.' +error});
     });
 });
 
-router.post('/editarProduto', (req, res) => {
-  const { id, nome, medida } = req.body;
+router.post('/editarProduto', async(req, res) => {
+  const { id, nome, medida, antnome } = req.body;
   console.log(id)
   const novoProduto = {
     nome,
@@ -37,8 +36,9 @@ router.post('/editarProduto', (req, res) => {
     timestamp: new Date().getTime(), // Adicionar o timestamp
   };
 
-  produtoController.updateProduto(id, novoProduto)
+  await produtoController.updateProduto(id, novoProduto)
     .then(() => {
+      pedidoController.updatePedidoProduto(antnome, nome)
       res.redirect('/produtos');
     })
     .catch((error) => {
@@ -46,12 +46,14 @@ router.post('/editarProduto', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id/:nome',async (req, res) => {
   const produtoId = req.params.id;
+  const nome = req.params.nome;
   const teste = new ObjectId(produtoId);
 
-  produtoController.deleteProduto(teste)
+  await produtoController.deleteProduto(teste)
     .then((result) => {
+      pedidoController.deletePedidoProduto(nome)
       res.status(200).json({ result: result + "Produto deletado." });
     })
     .catch((error) => {
@@ -59,8 +61,8 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
-  const { nome, medida} = req.body;
+router.post('/',async (req, res) => {
+  const { nome, medida } = req.body;
 
   const novoProduto = {
     nome,
@@ -68,11 +70,11 @@ router.post('/', (req, res) => {
     timestamp: new Date().getTime(), // Adicionar o timestamp
   };
 
-  produtoController.createProduto(novoProduto)
+  await produtoController.createProduto(novoProduto)
     .then(() => {
       produtoController.readProdutos()
         .then((produtos) => {
-          res.render('produtos', { produtos });
+          res.redirect('/produtos');
         })
         .catch((error) => {
           res.status(500).json({ error: 'Ocorreu um erro ao obter a lista de produtos.' });
@@ -82,4 +84,6 @@ router.post('/', (req, res) => {
       res.status(500).json({ error: 'Ocorreu um erro ao cadastrar o produto.' });
     });
 });
+
+
 module.exports = router;

@@ -1,7 +1,15 @@
+const fs = require('fs');
+var path = require('path');
+const { execSync } = require('child_process');
+const nodeModulesExists = fs.existsSync(path.join(__dirname, 'node_modules'));
+if (!nodeModulesExists) {
+  console.log('Pasta node_modules não encontrada. Executando npm install --force-sync...');
+  execSync('npm install --force-sync');
+}
+
 const express = require('express');
 const app = express();
 require('dotenv').config();
-var path = require('path');
 const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -27,7 +35,7 @@ app.use(bodyParser.json());
 app.use('/', routes);
 app.use('/produtos', produtosRoute);
 app.use('/pedidos', pedidosRoute);
-app.use('/login', clientesRoute);
+app.use('/clientes', clientesRoute);
 
 
 app.listen(port, () => {

@@ -6,12 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetroNaka</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/pedidos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="../javascripts/pedidosFunctions.js"></script>
 </head>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
-<script src="../javascripts/pedidosFunctions.js"></script>
+
 
 <body>
     <header class="CabecalhoHome">
@@ -32,16 +40,17 @@
     <main class="MainLogin">
         <section id="lista-pedidos">
             <h2>Lista de Pedidos</h2>
-            <input type="text" id="buscar" placeholder="Buscar por nome da usina ou do produto">
-            <table>
+            <table id="myTable">
                 <thead>
                     <tr>
                         <th>Número Pedido</th>
                         <th>Nome da Usina</th>
                         <th>Nome do Produto</th>
-                        <th>Quantidade</th> 
+                        <th>Quantidade</th>
                         <th>Preço</th>
                         <th>Destino</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="tabela-pedidos">
@@ -59,7 +68,8 @@
                     {{/pedidos}}
                 </tbody>
             </table>
-            <button style="margin-top: 20px" id="btn-extrair-pdf" class="btn-extrair-pdf" onclick="exportToPdf()">Extrair PDF</button>
+            <button style="margin-top: 20px" id="btn-extrair-pdf" class="btn-extrair-pdf"
+                onclick="exportToPdf()">Extrair PDF</button>
 
         </section>
         <form action="/pedidos/novoPedido" method="GET">
@@ -71,7 +81,31 @@
     <footer>
         <div></div>
     </footer>
-    
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "lengthMenu": [5, 10, 25, 50],
+                "language": {
+                    "lengthMenu": "_MENU_ registros",
+                    "zeroRecords": "Nenhum registro encontrado",
+                    "info": "Página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Nenhum registro disponível",
+                    "infoFiltered": "(filtrado de _MAX_ registros no total)",
+                    "search": "Buscar",
+                    "loadingRecords": "Loading...",
+                    "paginate": {
+                        "first": "Primeiro",
+                        "last": "Último",
+                        "next": "Próximo",
+                        "previous": "Anterior"
+                    }
+                }
+
+
+            });
+        });
+    </script>
+
 </body>
 
 </html>

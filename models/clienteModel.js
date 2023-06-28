@@ -18,7 +18,7 @@ class ClienteDAO {
         try {
             const clientes = await this.collection.find().toArray();
             console.log('Clientes encontrados:', clientes);
-            return(clientes)
+            return clientes;
         } catch (error) {
             console.error('Erro ao ler os clientes:', error);
         }
@@ -45,12 +45,11 @@ class ClienteDAO {
     async findOne(query) {
         try {
             const result = await this.collection.findOne(query);
-            return (result);
+            return result;
         } catch (error) {
             console.error('Erro ao logar', error);
         }
-      }
-
+    }
 }
 
 module.exports = ClienteDAO;

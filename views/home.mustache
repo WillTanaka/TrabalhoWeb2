@@ -13,10 +13,10 @@
         </div>
         <nav>
             <ul>
+                <li id="perfil"><a href="/clientes/editarCliente">Perfil</a></li>
                 <li><a href="/pedidos">Pedidos</a></li>
                 <li><a href="/produtos">Produtos</a></li>
                 <li><a href="/logout">Sair</a></li>
-
             </ul>
         </nav>
     </header>
@@ -30,5 +30,15 @@
     <footer>
         <div></div>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const perfilLi = document.getElementById("perfil");
+          perfilLi.addEventListener("click", (event) => {
+              event.preventDefault();
+              window.location.href = "/clientes/editarCliente";
+          });
+        });
+    </script>
 </body>
 </html>

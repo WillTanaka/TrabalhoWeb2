@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
 
 });
 
-router.get('/novoPedido', (req, res) => {
-  produtoController.readProdutos()
+router.get('/novoPedido', async (req, res) => {
+  await produtoController.readProdutos()
     .then((produtos) => {
       res.render('novoPedido', { produtos });
     }).catch((error) => {
@@ -23,12 +23,12 @@ router.get('/novoPedido', (req, res) => {
 
 });
 
-router.get('/editarPedido/:id', (req, res) => {
+router.get('/editarPedido/:id',  async(req, res) => {
   const pedidoId = req.params.id;
   const teste = new ObjectId(pedidoId);
-  pedidoController.findOne(teste)
+  await pedidoController.findOne(teste)
     .then((pedidos) => {
-      produtoController.findOne(pedidos.produto)
+      produtoController.findOnenome(pedidos.produto)
         .then((produto) => {
           produtoController.readProdutos()
             .then((produtos) => {
@@ -36,11 +36,11 @@ router.get('/editarPedido/:id', (req, res) => {
               res.render('editarPedido', { pedidos: pedidos, produto: produto, produtos: produtos });
             })
             .catch((error) => {
-              res.status(500).json({ error: 'Ocorreu um erro ao buscar o produto.' });
+              res.status(500).json({ error: 'Ocorreu um erro ao buscar o produtoaaa.' +error});
             });
         })
         .catch((error) => {
-          res.status(500).json({ error: 'Ocorreu um erro ao buscar o produto.' });
+          res.status(500).json({ error: 'Ocorreu um erro ao buscar o produtoaaaaaaaaaaaaaa.' });
         });
     })
     .catch((error) => {
@@ -48,7 +48,7 @@ router.get('/editarPedido/:id', (req, res) => {
     });
 });
 
-router.post('/editarPedido', (req, res) => {
+router.post('/editarPedido', async(req, res) => {
   const clienteId = req.user.clienteId;
 
   const { id, usina, produto, quantidade, preco, destino } = req.body;
@@ -62,7 +62,7 @@ router.post('/editarPedido', (req, res) => {
     timestamp: new Date().getTime(), // Adicionar o timestamp
   };
 
-  pedidoController.updatePedido(id, novoPedido)
+  await pedidoController.updatePedido(id, novoPedido)
     .then(() => {
       res.redirect('/pedidos');
     })
@@ -71,11 +71,11 @@ router.post('/editarPedido', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async(req, res) => {
   const pedidoId = req.params.id;
   const teste = new ObjectId(pedidoId);
 
-  pedidoController.deletePedido(teste)
+  await pedidoController.deletePedido(teste)
     .then((result) => {
       res.status(200).json({ result: result + "Pedido deletado." });
     })
@@ -84,7 +84,7 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/',async (req, res) => {
   const clienteId = req.user.clienteId;
   const { usina, produto, quantidade, preco, destino } = req.body;
   const novoPedido = {
@@ -97,7 +97,7 @@ router.post('/', (req, res) => {
     timestamp: new Date().getTime(), // Adicionar o timestamp
   };
 
-  pedidoController.createPedido(novoPedido)
+  await pedidoController.createPedido(novoPedido)
     .then(() => {
       res.redirect('/pedidos');
     })
