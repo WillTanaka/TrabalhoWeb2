@@ -71,6 +71,12 @@ input[type="password"] {
     border-radius: 4px;
 }
 
+.errado {
+    color: red;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
 button[type="submit"] {
     display: block;
     margin: 0 auto;

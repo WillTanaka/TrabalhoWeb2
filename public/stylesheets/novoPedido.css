@@ -78,6 +78,12 @@ footer {
     font-family: Arial, sans-serif;
 }
 
+.errado {
+    color: red;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
 h2 {
     text-align: center;
     margin-bottom: 20px;

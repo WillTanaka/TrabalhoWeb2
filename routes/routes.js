@@ -101,6 +101,7 @@ router.get('/logout', auth, async (req, res) => {
   res.clearCookie('token');
   res.redirect('/');
 });
+
 router.get('/automatico', auth, async (req, res) => {
   const clienteId = req.user.clienteId;
   const produtos = [

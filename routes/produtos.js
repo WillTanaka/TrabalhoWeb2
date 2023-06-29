@@ -8,6 +8,8 @@ const PedidoController = require('../controller/pedidoController');
 const pedidoController = new PedidoController();
 const auth = require('../middleware/auth')
 router.use(auth);
+const valida = require('./validacao/validacao')
+const validacoes = new valida();
 
 router.get('/novoProduto', (req, res) => {
   res.render('novoProduto');
@@ -15,8 +17,8 @@ router.get('/novoProduto', (req, res) => {
 
 router.get('/editarProduto/:id', async (req, res) => {
   const produtoId = req.params.id;
-  const teste = new ObjectId(produtoId);
-  await produtoController.findOne(teste)
+  const produto = new ObjectId(produtoId);
+  await produtoController.findOne(produto)
     .then((produtos) => {
       console.log(produtos);
       res.render('editarProduto', { produtos });
@@ -28,29 +30,41 @@ router.get('/editarProduto/:id', async (req, res) => {
 
 router.post('/editarProduto', async (req, res) => {
   const { id, nome, medida, antnome } = req.body;
-  console.log(id)
   const novoProduto = {
     nome,
     medida,
     timestamp: new Date().getTime(),
   };
+  const { error } = validacoes.validacaoProdutos(novoProduto)
+  if (error) {
+    const produto = new ObjectId(id);
+    await produtoController.findOne(produto)
+      .then((produtos) => {
+        console.log(produtos);
+        res.render('editarProduto', { produtos });
+      })
+      .catch((error) => {
+        res.status(500).json({ error: 'Ocorreu um erro ao buscar o produto.' + error });
+      });
+  } else {
+    await produtoController.updateProduto(id, novoProduto)
+      .then(() => {
+        pedidoController.updatePedidoProduto(antnome, nome)
+        res.redirect('/produtos');
+      })
+      .catch((error) => {
+        res.status(500).json({ error: 'Ocorreu um erro ao atualizar o produto.' });
+      });
+  }
 
-  await produtoController.updateProduto(id, novoProduto)
-    .then(() => {
-      pedidoController.updatePedidoProduto(antnome, nome)
-      res.redirect('/produtos');
-    })
-    .catch((error) => {
-      res.status(500).json({ error: 'Ocorreu um erro ao atualizar o produto.' });
-    });
 });
 
 router.delete('/:id/:nome', async (req, res) => {
   const produtoId = req.params.id;
   const nome = req.params.nome;
-  const teste = new ObjectId(produtoId);
+  const produto = new ObjectId(produtoId);
 
-  await produtoController.deleteProduto(teste)
+  await produtoController.deleteProduto(produto)
     .then((result) => {
       pedidoController.deletePedidoProduto(nome)
       res.status(200).json({ result: result + "Produto deletado." });
@@ -68,20 +82,25 @@ router.post('/', async (req, res) => {
     medida,
     timestamp: new Date().getTime(),
   };
+  const { error } = validacoes.validacaoProdutos(novoProduto)
+  if (error) {
+    res.render('novoProduto', { error: error });
+  } else {
+    await produtoController.createProduto(novoProduto)
+      .then(() => {
+        produtoController.readProdutos()
+          .then((produtos) => {
+            res.redirect('/produtos');
+          })
+          .catch((error) => {
+            res.status(500).json({ error: 'Ocorreu um erro ao obter a lista de produtos.' });
+          });
+      })
+      .catch((error) => {
+        res.status(500).json({ error: 'Ocorreu um erro ao cadastrar o produto.' });
+      });
+  }
 
-  await produtoController.createProduto(novoProduto)
-    .then(() => {
-      produtoController.readProdutos()
-        .then((produtos) => {
-          res.redirect('/produtos');
-        })
-        .catch((error) => {
-          res.status(500).json({ error: 'Ocorreu um erro ao obter a lista de produtos.' });
-        });
-    })
-    .catch((error) => {
-      res.status(500).json({ error: 'Ocorreu um erro ao cadastrar o produto.' });
-    });
 });
 
 module.exports = router;

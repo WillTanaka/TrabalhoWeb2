@@ -5,9 +5,8 @@ const ClienteController = require('../controller/clienteController');
 const clienteController = new ClienteController();
 const auth = require('../middleware/auth')
 const { ObjectId } = require('mongodb');
-router.get('/novoCliente', (req, res) => {
-  res.render('novoCliente');
-});
+const valida = require('./validacao/validacao')
+const validacoes = new valida();
 
 router.post('/novoCliente', async (req, res) => {
   const { nome, email, senha } = req.body;
@@ -18,14 +17,19 @@ router.post('/novoCliente', async (req, res) => {
     senha,
     timestamp: new Date().getTime(),
   };
+  const { error } = validacoes.validacaoClientes(novoCliente)
+  if (error) {
+    res.render('novaConta', { error: error.message })
+  } else {
+    await clienteController.createCliente(novoCliente)
+      .then(() => {
+        res.render('login');
+      })
+      .catch((error) => {
+        res.status(500).json({ error: 'Ocorreu um erro ao cadastrar o cliente.' });
+      });
+  }
 
-  await clienteController.createCliente(novoCliente)
-    .then(() => {
-      res.render('login');
-    })
-    .catch((error) => {
-      res.status(500).json({ error: 'Ocorreu um erro ao cadastrar o cliente.' });
-    });
 });
 
 router.post('/loginCliente', async (req, res) => {
@@ -40,7 +44,7 @@ router.post('/loginCliente', async (req, res) => {
       res.cookie('token', token, { httpOnly: true });
       res.redirect('/home');
     } else {
-      res.status(400).json({ error: 'Email ou senha inválidos' });
+      res.render('login', {error:"Email ou senha incorreta"})
     }
   } catch (error) {
     console.error(error);
@@ -69,12 +73,26 @@ router.post('/editarCliente', auth, async (req, res) => {
   try {
     const clienteId = req.user.clienteId;
     const { nome, email, senha } = req.body;
+    const novoCliente = {
+      nome,
+      email,
+      senha,
+      timestamp: new Date().getTime(),
+    };
+    console.log(clienteId)
+    
+    const { error } = validacoes.validacaoClientes(novoCliente)
+    if (error) {
+      const cliente = await clienteController.findOne({ _id: new ObjectId(clienteId) });
+      res.render('conta', { error: error.message, cliente })
+    } else {
+      const filter = { _id: new ObjectId(clienteId) };
+      const update = { $set: { nome, email, senha } };
 
-    const filter = { _id: new ObjectId(clienteId) };
-    const update = { $set: { nome, email, senha } };
+      await clienteController.updateCliente(filter, update);
+      res.redirect('/home');
+    }
 
-    await clienteController.updateCliente(filter, update);
-    res.redirect('/home');
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro interno do servidor');

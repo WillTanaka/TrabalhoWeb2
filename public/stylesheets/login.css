@@ -63,6 +63,12 @@ section {
     margin-bottom: 20px;
 }
 
+.errado {
+    color: red;
+    margin-left: 65px;
+    margin-bottom: 10px;
+}
+
 h2 {
     display: flex;
     justify-content: center;

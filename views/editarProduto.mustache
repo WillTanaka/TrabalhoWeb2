@@ -42,6 +42,9 @@
                     <input type="text" id="medida" name="medida" value="{{medida}}" required>
                 </div>
                 <input type="hidden" id="antnome" name="antnome" value="{{nome}}" required>
+                {{#error}}
+                <label for="error" class="errado">{{error}}</label>
+                {{/error}}
                 <div class="form-group">
                     <button type="submit">Editar</button>
                 </div>

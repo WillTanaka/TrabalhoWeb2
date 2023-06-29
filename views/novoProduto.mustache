@@ -36,6 +36,9 @@
                     <label for="produto">Unidade de medida:</label>
                     <input type="text" id="medida" name="medida" required>
                 </div>
+                {{#error}}
+                <label for="error" class="errado">{{error}}</label>
+                {{/error}}
                 <div class="form-group">
                     <button type="submit">Cadastrar</button>
                 </div>

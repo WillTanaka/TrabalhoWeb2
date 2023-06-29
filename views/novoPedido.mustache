@@ -53,6 +53,9 @@
                     <label for="destino">Destino:</label>
                     <input type="text" id="destino" name="destino" required>
                 </div>
+                {{#error}}
+                <label for="error" class="errado">{{error}}</label>
+                {{/error}}
                 <div class="form-group">
                     <button type="submit">Cadastrar</button>
                 </div>

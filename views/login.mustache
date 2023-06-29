@@ -39,6 +39,9 @@
                         <label for="senha">Senha:</label>
                         <input type="password" id="senha" name="senha">
                     </div>
+                    {{#error}}
+                    <label for="errado" class="errado">{{error}}</label>
+                    {{/error}}
                     <button type="submit">Entrar</button>
                 </form>
                 <a class="criarConta" href="/novaConta">Criar conta</a>
