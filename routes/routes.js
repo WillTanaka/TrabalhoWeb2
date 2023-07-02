@@ -11,7 +11,6 @@ const pedido = new PedidoController();
 const ProdutoController = require('../controller/produtoController');
 const produto = new ProdutoController();
 
-
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -22,7 +21,6 @@ const transporter = nodemailer.createTransport({
     rejectUnauthorized: false
   }
 });
-
 
 router.post('/email', (req, res) => {
 

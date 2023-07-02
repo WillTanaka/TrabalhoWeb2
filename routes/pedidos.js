@@ -34,11 +34,11 @@ router.get('/editarPedido/:id', async (req, res) => {
               res.render('editarPedido', { pedidos: pedidos, produto: produto, produtos: produtos });
             })
             .catch((error) => {
-              res.status(500).json({ error: 'Ocorreu um erro ao buscar o produtoaaa.' + error });
+              res.status(500).json({ error: 'Ocorreu um erro ao buscar o produto.' + error });
             });
         })
         .catch((error) => {
-          res.status(500).json({ error: 'Ocorreu um erro ao buscar o produtoaaaaaaaaaaaaaa.' });
+          res.status(500).json({ error: 'Ocorreu um erro ao buscar o produto.' });
         });
     })
     .catch((error) => {

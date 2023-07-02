@@ -32,7 +32,7 @@ router.post('/novoCliente', async (req, res) => {
 
 });
 
-router.post('/loginCliente', async (req, res) => {
+/*router.post('/loginCliente', async (req, res) => {
   const email = req.body.email;
   const senha = req.body.senha;
 
@@ -50,7 +50,27 @@ router.post('/loginCliente', async (req, res) => {
     console.error(error);
     res.status(500).send('Erro interno do servidor');
   }
+});*/
+
+router.post('/loginCliente', async (req, res) => {
+  const email = req.body.email;
+  const senha = req.body.senha;
+
+  try {
+    const user = await clienteController.findOne({ email, senha });
+
+    if (user) {
+      const token = jwt.sign({ clienteId: user._id }, process.env.JWT_SENHA, { expiresIn: '1h' });
+      res.status(200).json({ token }); // Retorna o token como resposta
+    } else {
+      res.status(401).json({ error: "Email ou senha incorreta" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro interno do servidor');
+  }
 });
+ 
 
 router.get('/editarCliente', auth, async (req, res) => {
   try {
@@ -104,8 +124,14 @@ router.delete('/excluirCliente', auth, async (req, res) => {
     const clienteId = req.user.clienteId;
     const filter = { _id: new ObjectId(clienteId) };
 
-    await clienteController.deleteCliente(filter);
-    res.redirect('/logout')
+    await clienteController.deleteCliente(filter)
+    .then(() => {
+      
+      res.redirect('/logout')
+    }).catch((error) => {
+      res.status(500).json({ error: 'Ocorreu um erro ao deletar o cliente.' });
+    });
+    
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro interno do servidor');
