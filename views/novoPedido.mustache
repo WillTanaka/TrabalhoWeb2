@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetroNaka</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/novoPedido.css" />
+    <script src="../../javascripts/geralFunctions.js"></script>
+    <script src="../../javascripts/cadastrarpedidoFunctions.js"></script>
 </head>
 
 <body>
@@ -15,9 +17,9 @@
         </div>
         <nav>
             <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/pedidos">Pedidos</a></li>
-                <li><a href="/produtos">Produtos</a></li>
+                <li><a href="#" onclick="home()">Home</a></li>
+                <li><a href="/telapedidos">Pedidos</a></li>
+                <li><a href="/telaprodutos">Produtos</a></li>
             </ul>
         </nav>
     </header>
@@ -27,39 +29,34 @@
     <main class="MainLogin">
         <div class="container">
             <h2>Cadastro de Novo Pedido</h2>
-            <form action="/pedidos/" method="POST">
-                <div class="form-group">
-                    <label for="nome">Nome da Usina:</label>
-                    <input type="text" id="usina" name="usina" required>
-                </div>
-                <div class="form-group">
-                    <label for="produto">Produto:</label>
-                    <select id="produto" name="produto" required>
-                        {{#produtos}}
-                        <option value="{{nome}}">{{nome}}</option>
-                        {{/produtos}}
-                    </select>
-                </div>
+            <div class="form-group">
+                <label for="nome">Nome da Usina:</label>
+                <input type="text" id="usina" name="usina" required>
+            </div>
+            <div class="form-group">
+                <label for="produto">Produto:</label>
+                <select id="produto" name="produto" required>
 
-                <div class="form-group">
-                    <label for="quantidade">Quantidade:</label>
-                    <input type="text" id="quantidade" name="quantidade" required>
-                </div>
-                <div class="form-group">
-                    <label for="preco">Preço:</label>
-                    <input type="text" id="preco" name="preco" required>
-                </div>
-                <div class="form-group">
-                    <label for="destino">Destino:</label>
-                    <input type="text" id="destino" name="destino" required>
-                </div>
-                {{#error}}
-                <label for="error" class="errado">{{error}}</label>
-                {{/error}}
-                <div class="form-group">
-                    <button type="submit">Cadastrar</button>
-                </div>
-            </form>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="text" id="quantidade" name="quantidade" required>
+            </div>
+            <div class="form-group">
+                <label for="preco">Preço:</label>
+                <input type="text" id="preco" name="preco" required>
+            </div>
+            <div class="form-group">
+                <label for="destino">Destino:</label>
+                <input type="text" id="destino" name="destino" required>
+            </div>
+
+            <label for="error" id="error" class="errado"></label>
+
+            <div class="form-group">
+                <button type="submit" onclick="cadastrar()">Cadastrar</button>
+            </div>
         </div>
     </main>
 

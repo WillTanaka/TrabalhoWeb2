@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetroNaka</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/novoPedido.css" />
+    <script src="../../javascripts/geralFunctions.js"></script>
+    <script src="../../javascripts/editarpedidoFunctions.js"></script>
 </head>
 
 <body>
@@ -15,9 +17,9 @@
         </div>
         <nav>
             <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/pedidos">Pedidos</a></li>
-                <li><a href="/produtos">Produtos</a></li>
+                <li><a href="#" onclick="home()">Home</a></li>
+                <li><a href="/telapedidos">Pedidos</a></li>
+                <li><a href="/telaprodutos">Produtos</a></li>
             </ul>
         </nav>
     </header>
@@ -27,50 +29,37 @@
     <main class="MainLogin">
         <div class="container">
             <h2>Editar Pedido</h2>
-            <form action="/pedidos/editarPedido" method="post">
-                {{#pedidos}}
-                <div class="form-group">
-                    <label for="usina">ID:</label>
-                    <input type="text" id="id" name="id" value="{{_id}}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="usina">Nome da Usina:</label>
-                    <input type="text" id="usina" name="usina" value="{{usina}}" required>
-                </div>
-                {{/pedidos}}
-                <div class="form-group">
-                    <label for="produto">Produto:</label>
-                    <select id="produto" name="produto" required>
-                        {{#produto}}
-                        <option value="{{nome}}">{{nome}}</option>
-                        {{/produto}}
-                        {{#produtos}}
-                        <option value="{{nome}}">{{nome}}</option>
-                        {{/produtos}}
-                    </select>
-                </div>
-                {{#pedidos}}
-                <div class="form-group">
-                    <label for="quantidade">Quantidade:</label>
-                    <input type="text" id="quantidade" name="quantidade" value="{{quantidade}}" required>
-                </div>
-                <div class="form-group">
-                    <label for="preco">Preço:</label>
-                    <input type="text" id="preco" name="preco" value="{{preco}}" required>
-                </div>
-                <div class="form-group">
-                    <label for="destino">Destino:</label>
-                    <input type="text" id="destino" name="destino" value="{{destino}}" required>
-                </div>
-                {{#error}}
-                <label for="error" class="errado">{{error}}</label>
-                {{/error}}
-                <div class="form-group">
-                    <button type="submit">Salvar alterações</button>
-                </div>
-                {{/pedidos}}
+            <div class="form-group">
+                <label for="usina">ID:</label>
+                <input type="text" id="id" name="id" value="{{_id}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="usina">Nome da Usina:</label>
+                <input type="text" id="usina" name="usina" value="{{usina}}" required>
+            </div>
+            <div class="form-group">
+                <label for="produto">Produto:</label>
+                <select id="produto" name="produto" required>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="text" id="quantidade" name="quantidade" value="{{quantidade}}" required>
+            </div>
+            <div class="form-group">
+                <label for="preco">Preço:</label>
+                <input type="text" id="preco" name="preco" value="{{preco}}" required>
+            </div>
+            <div class="form-group">
+                <label for="destino">Destino:</label>
+                <input type="text" id="destino" name="destino" value="{{destino}}" required>
+            </div>
 
-            </form>
+            <label for="error" id="error" class="errado"></label>
+
+            <div class="form-group">
+                <button type="submit" onclick="cadastrar()">Salvar alterações</button>
+            </div>
         </div>
     </main>
 

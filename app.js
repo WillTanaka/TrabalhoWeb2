@@ -29,6 +29,7 @@ app.set('view engine', 'mustache');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/views', express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -36,7 +37,6 @@ app.use('/', routes);
 app.use('/produtos', produtosRoute);
 app.use('/pedidos', pedidosRoute);
 app.use('/clientes', clientesRoute);
-
 
 app.listen(port, () => {
   console.log(`Servidor está rodando em http://localhost:${port}`);

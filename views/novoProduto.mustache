@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetroNaka</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/novoProduto.css" />
+    <script src="../../javascripts/geralFunctions.js"></script>
+    <script src="../../javascripts/cadastrarprodutosFuctions.js"></script>
 </head>
 
 <body>
@@ -15,9 +17,9 @@
         </div>
         <nav>
             <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/pedidos">Pedidos</a></li>
-                <li><a href="/produtos">Produtos</a></li>
+                <li><a href="#" onclick="home()">Home</a></li>
+                <li><a href="/telapedidos">Pedidos</a></li>
+                <li><a href="/telaprodutos">Produtos</a></li>
             </ul>
         </nav>
     </header>
@@ -27,22 +29,20 @@
     <main class="MainLogin">
         <div class="container">
             <h2>Cadastro de Novo Produto</h2>
-            <form action="/produtos/" method="POST">
-                <div class="form-group">
-                    <label for="nome">Nome do produto:</label>
-                    <input type="text" id="nome" name="nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="produto">Unidade de medida:</label>
-                    <input type="text" id="medida" name="medida" required>
-                </div>
-                {{#error}}
-                <label for="error" class="errado">{{error}}</label>
-                {{/error}}
-                <div class="form-group">
-                    <button type="submit">Cadastrar</button>
-                </div>
-            </form>
+            <div class="form-group">
+                <label for="nome">Nome do produto:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="produto">Unidade de medida:</label>
+                <input type="text" id="medida" name="medida">
+            </div>
+
+            <label for="error" id="error" class="errado"></label>
+
+            <div class="form-group">
+                <button type="submit" onclick="cadastrar()">Cadastrar</button>
+            </div>
         </div>
     </main>
 

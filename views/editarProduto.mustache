@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetroNaka</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/novoProduto.css" />
+    <script src="../../javascripts/geralFunctions.js"></script>
+    <script src="../../javascripts/editarprodutosFunctions.js"></script>
 </head>
+
+<script></script>
 
 <body>
     <header class="CabecalhoHome">
@@ -15,9 +19,9 @@
         </div>
         <nav>
             <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/pedidos">Pedidos</a></li>
-                <li><a href="/produtos">Produtos</a></li>
+                <li><a href="#" onclick="home()">Home</a></li>
+                <li><a href="/telapedidos">Pedidos</a></li>
+                <li><a href="/telaprodutos">Produtos</a></li>
             </ul>
         </nav>
     </header>
@@ -27,29 +31,25 @@
     <main class="MainLogin">
         <div class="container">
             <h2>Edição de Produto</h2>
-            <form action="/produtos/editarProduto" method="post">
-                {{#produtos}}
-                <div class="form-group">
-                    <label for="usina">ID:</label>
-                    <input type="text" id="id" name="id" value="{{_id}}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="produto">Nome do Produto:</label>
-                    <input type="text" id="nome" name="nome" value="{{nome}}" required>
-                </div>
-                <div class="form-group">
-                    <label for="produto">Unidade de medida:</label>
-                    <input type="text" id="medida" name="medida" value="{{medida}}" required>
-                </div>
-                <input type="hidden" id="antnome" name="antnome" value="{{nome}}" required>
-                {{#error}}
-                <label for="error" class="errado">{{error}}</label>
-                {{/error}}
-                <div class="form-group">
-                    <button type="submit">Salvar alterações</button>
-                </div>
-                {{/produtos}}
-            </form>
+            <div class="form-group">
+                <label for="usina">ID:</label>
+                <input type="text" id="id" name="id" readonly>
+            </div>
+            <div class="form-group">
+                <label for="produto">Nome do Produto:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="produto">Unidade de medida:</label>
+                <input type="text" id="medida" name="medida" required>
+            </div>
+            <input type="hidden" id="antnome" name="antnome" required>
+
+            <label for="error" id="error" class="errado"></label>
+
+            <div class="form-group">
+                <button type="submit" onclick="cadastrar()">Salvar alterações</button>
+            </div>
         </div>
     </main>
 

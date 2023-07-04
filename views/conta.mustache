@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetroNaka</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/conta.css" />
+    <script src="../../javascripts/geralFunctions.js"></script>
+    <script src="../../javascripts/editarclienteFunctions.js"></script>
 </head>
 
 <body>
     <header class="CabecalhoHome">
         <div class="Logo">
-            <a href="/home"><img class="logo" src="../images/PetroNaka1.png" alt="..."></a>
+            <a href="#" onclick="home()"><img class="logo" src="../images/PetroNaka1.png" alt="..."></a>
         </div>
     </header>
 
@@ -20,43 +22,39 @@
     <main class="MainLogin">
         <div class="container">
             <h2>Editar Usuário</h2>
-            <form action="/clientes/editarCliente" method="POST">
-                {{#cliente}}
-                <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" value="{{nome}}" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" value="{{email}}" required>
-                </div>
-                <div class="form-group">
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" value="{{senha}}" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirmar-senha">Confirmar Senha:</label>
-                    <input type="password" id="confirmar-senha" name="confirmar-senha" value="{{senha}}" required>
-                </div>
-                {{#error}}
-                <label for="error" class="errado">{{error}}</label>
-                {{/error}}
-                <div class="form-group">
-                    <button type="submit">Salvar alterações</button>
-                </div>
-                {{/cliente}}
-            </form>
-            {{#cliente}}
+
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmar-senha">Confirmar Senha:</label>
+                <input type="password" id="confirmar-senha" name="confirmar-senha" required>
+            </div>
+
+            <label for="error" id="error" class="errado"></label>
+
+            <div class="form-group">
+                <button type="submit" onclick="cadastrar()">Salvar alterações</button>
+            </div>
+
             <button class="button-excluir" type="button" id="excluir-usuario" onclick="excluirCliente()">Excluir
                 usuário</button>
-            {{/cliente}}
+
         </div>
     </main>
 
     <footer>
         <div></div>
     </footer>
-    <script src="../javascripts/clientesFunctions.js"></script>
 </body>
 
 </html>

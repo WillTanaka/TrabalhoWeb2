@@ -8,20 +8,29 @@ const ProdutoController = require('../controller/produtoController')
 const produtoController = new ProdutoController();
 const valida = require('./validacao/validacao')
 const validacoes = new valida();
+
+router.get('/novoPedido', (req, res) => {
+  res.render('novoPedido');
+});
+
+router.get('/editarPedido/:id', (req, res) => {
+  res.render('editarPedido');
+});
+
 const auth = require('../middleware/auth')
 router.use(auth);
 
-router.get('/novoPedido', async (req, res) => {
+router.get('/pedido', async (req, res) => {
   await produtoController.readProdutos()
     .then((produtos) => {
-      res.render('novoPedido', { produtos });
+      res.status(200).json({ produtos });
     }).catch((error) => {
       res.status(500).json({ error: 'Ocorreu um erro ao buscar o pedido.' });
     });
 
 });
 
-router.get('/editarPedido/:id', async (req, res) => {
+router.get('/editarPed/:id', async (req, res) => {
   const pedidoId = req.params.id;
   const teste = new ObjectId(pedidoId);
   await pedidoController.findOne(teste)
@@ -31,7 +40,7 @@ router.get('/editarPedido/:id', async (req, res) => {
           produtoController.readProdutos()
             .then((produtos) => {
               produtos = produtos.filter((produtos) => produtos.nome !== produto.nome);
-              res.render('editarPedido', { pedidos: pedidos, produto: produto, produtos: produtos });
+              res.status(200).json({ pedidos: pedidos, produto: produto, produtos: produtos });
             })
             .catch((error) => {
               res.status(500).json({ error: 'Ocorreu um erro ao buscar o produto.' + error });
@@ -62,28 +71,11 @@ router.post('/editarPedido', async (req, res) => {
   const { error } = validacoes.validacaoPedidos(novoPedido)
 
   if (error) {
-    const teste = new ObjectId(id);
-    await pedidoController.findOne(teste)
-      .then((pedidos) => {
-        produtoController.findOnenome(pedidos.produto)
-          .then((produto) => {
-            produtoController.readProdutos()
-              .then((produtos) => {
-                produtos = produtos.filter((produtos) => produtos.nome !== produto.nome);
-                res.render('editarPedido', { pedidos: pedidos, produto: produto, produtos: produtos, error: error.message });
-              })
-              .catch((error) => {
-                res.status(500).json({ error: 'Ocorreu um erro ao buscar o produtoaaa.' + error });
-              });
-          })
-          .catch((error) => {
-            res.status(500).json({ error: 'Ocorreu um erro ao buscar o produtoaaaaaaaaaaaaaa.' });
-          });
-      })
+    res.status(500).json({ error: error });
   } else {
     await pedidoController.updatePedido(id, novoPedido)
-      .then(() => {
-        res.redirect('/pedidos');
+      .then((result) => {
+        res.status(200).json({ result });
       })
       .catch((error) => {
         res.status(500).json({ error: 'Ocorreu um erro ao atualizar o pedido.' });
@@ -119,16 +111,11 @@ router.post('/', async (req, res) => {
   };
   const { error } = validacoes.validacaoPedidos(novoPedido)
   if (error) {
-    await produtoController.readProdutos()
-      .then((produtos) => {
-        res.render('novoPedido', { produtos: produtos, error: error });
-      }).catch((error) => {
-        res.status(500).json({ error: 'Ocorreu um erro ao buscar o pedido.' });
-      });
+    res.status(500).json({ error: error });
   } else {
     await pedidoController.createPedido(novoPedido)
-      .then(() => {
-        res.redirect('/pedidos');
+      .then((result) => {
+        res.status(200).json({ result: result + "Produto cadastrado." });
       })
       .catch((error) => {
         res.status(500).json({ error: 'Ocorreu um erro ao cadastrar o pedido.' });

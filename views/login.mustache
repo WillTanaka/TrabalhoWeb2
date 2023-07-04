@@ -6,7 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetroNaka</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/login.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+    <script src="https://raw.githubusercontent.com/janl/mustache.js/master/mustache.min.js"
+        type="application/javascript"></script>
 </head>
+<script src="../../javascripts/loginFunction.js"></script>
+
+<script>
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
 
 <body>
     <header class="CabecalhoHome">
@@ -29,28 +38,26 @@
     <main class="MainLogin">
         <section id="login">
             <h2>Login</h2>
-            {{! <form action="/pedidos/" method="GET"> }}
-                <form action="/clientes/loginCliente" method="POST">
-                    <div class="campo-formulario">
-                        <label for="email">E-mail:</label>
-                        <input type="email" id="email" name="email">
-                    </div>
-                    <div class="campo-formulario">
-                        <label for="senha">Senha:</label>
-                        <input type="password" id="senha" name="senha">
-                    </div>
-                    {{#error}}
-                    <label for="errado" class="errado">{{error}}</label>
-                    {{/error}}
-                    <button type="submit">Entrar</button>
-                </form>
-                <a class="criarConta" href="/novaConta">Criar conta</a>
+            <div class="campo-formulario">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="campo-formulario">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha">
+            </div>
+
+            <label for="errado" id="error" class="errado"></label>
+
+            <button type="submit" onclick="login()">Entrar</button>
+            <a class="criarConta" href="/novaConta">Criar conta</a>
         </section>
     </main>
 
     <footer>
         <div></div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
 </body>
 
 </html>
