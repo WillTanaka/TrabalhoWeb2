@@ -19,6 +19,7 @@ router.post('/novoCliente', async (req, res) => {
     nome,
     email,
     senha,
+    acesso:0,
     timestamp: new Date().getTime(),
   };
   const { error } = validacoes.validacaoClientes(novoCliente)
@@ -44,6 +45,11 @@ router.post('/loginCliente', async (req, res) => {
     const user = await clienteController.findOne({ email, senha });
 
     if (user) {
+      user.acesso = user.acesso+1;
+      console.log(user.acesso)
+      const filter = { _id: new ObjectId(user._id) };
+      const update = { $set: user };
+      await clienteController.updateCliente(filter, update);
       const token = jwt.sign({ clienteId: user._id }, process.env.JWT_SENHA, { expiresIn: '1h' });
       res.status(200).json({ token: token, clienteId: user._id });
     } else {
@@ -115,6 +121,23 @@ router.delete('/excluirCliente', auth, async (req, res) => {
         res.status(200).json({ result: result + "Cliente Excluido." });
       }).catch((error) => {
         res.status(500).json({ error: 'Ocorreu um erro ao deletar o cliente.' });
+      });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
+router.get('/acessos', auth, async (req, res) => {
+  try {
+    const clienteId = req.user.clienteId;
+    
+    await clienteController.findOne({ _id: new ObjectId(clienteId) })
+      .then((result) => {
+        res.status(200).json({ result: result.acesso });
+      }).catch((error) => {
+        res.status(500).json({ error: 'Ocorreu um erro ao contar acesso do cliente.' });
       });
 
   } catch (error) {

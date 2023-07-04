@@ -11,6 +11,7 @@ class Validation {
                 'string.email': 'O campo "email" deve conter @ e ser um email válido.'
             }),
             senha: Joi.string().min(8).required(),
+            acesso: Joi.number(),
             timestamp: Joi.date().timestamp()
         });
 

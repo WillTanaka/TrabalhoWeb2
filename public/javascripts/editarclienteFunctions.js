@@ -30,6 +30,9 @@ window.addEventListener("load", async function () {
 
             const confirma = this.document.getElementById("confirmar-senha")
             confirma.value = data.cliente.senha
+
+            const acesso = this.document.getElementById("Acesso")
+            acesso.value = data.cliente.acesso+1
         })
 })
 
